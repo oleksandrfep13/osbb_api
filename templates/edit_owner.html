@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Редагувати власника{% endblock %}
+
+{% block content %}
+    <h2>Редагувати власника</h2>
+    <form method="POST" action="{{ url_for('update_owner', owner_id=owner.idowners) }}">
+        <label for="name">Ім'я:</label>
+        <input type="text" name="name" value="{{ owner.name }}" required>
+        
+        <label for="last_name">Прізвище:</label>
+        <input type="text" name="last_name" value="{{ owner.last_name }}" required>
+        
+        <label for="phone_number">Телефон:</label>
+        <input type="text" name="phone_number" value="{{ owner.phone_number }}" required>
+        
+        <label for="email">Е-пошта:</label>
+        <input type="email" name="email" value="{{ owner.email }}" required>
+        
+        <button type="submit" class="btn btn-primary">Оновити</button>
+    </form>
+{% endblock %}

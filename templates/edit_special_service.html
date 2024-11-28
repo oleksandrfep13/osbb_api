@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Редагувати послугу{% endblock %}
+
+{% block content %}
+    <h2>Редагувати послугу</h2>
+    <form method="POST" action="{{ url_for('update_special_service', service_id=special_service.idspecial_services_and_repairs) }}">
+        <label for="services_type">Тип послуги:</label>
+        <input type="text" name="services_type" value="{{ special_service.services_type }}" required>
+
+        <label for="date_start">Дата початку:</label>
+        <input type="date" name="date_start" value="{{ special_service.date_start }}" required>
+
+        <label for="end_date">Дата закінчення:</label>
+        <input type="date" name="end_date" value="{{ special_service.end_date }}" required>
+
+        <label for="price">Ціна:</label>
+        <input type="number" name="price" value="{{ special_service.price }}" required>
+
+        <label for="idservice_providers">ID постачальника послуг:</label>
+        <input type="number" name="idservice_providers" value="{{ special_service.idservice_providers }}" required> 
+
+        <button type="submit">Оновити</button>
+    </form>
+{% endblock %}

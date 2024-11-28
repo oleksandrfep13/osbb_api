@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Власники квартир{% endblock %}
+
+{% block content %}
+    <h2>Список власників квартир</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Прізвище</th>
+                <th>Ім'я</th>
+                <th>Телефон</th>
+                <th>Е-пошта</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for owner in owners %}
+                <tr>
+                    <td>{{ owner['idowners'] }}</td>
+                    <td>{{ owner['last_name'] }}</td>
+                    <td>{{ owner['name'] }}</td>
+                    <td>{{ owner['phone_number'] }}</td>
+                    <td>{{ owner['email'] }}</td>
+                    <td>
+                        
+                        <a href="{{ url_for('update_owner', owner_id=owner['idowners']) }}">Редагувати</a>
+            <form action="{{ url_for('delete_owner', owner_id=owner['idowners']) }}" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-danger">Видалити</button>
+            </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ url_for('add_owner') }}" class="btn btn-success">Додати нового власника</a>
+{% endblock %}

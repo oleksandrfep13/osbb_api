@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Головна сторінка{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='icon.ico') }}">
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body>
+    <header>
+        <h1>ОСББ</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('get_apartments') }}">Квартири</a></li>
+                <li><a href="{{ url_for('get_owners') }}">Власники</a></li>
+                <li><a href="{{ url_for('get_payments') }}">Платежі</a></li>
+                <li><a href="{{ url_for('get_special_services') }}">Послуги</a></li>
+                <li><a href="{{ url_for('get_advertisements') }}">Оголошення</a></li>
+		<li><a href="{{ url_for('get_directors') }}">Директори ОСББ</a></li>
+                <li><a href="{{ url_for('get_meetings') }}">Збори</a></li>
+                <li><a href="{{ url_for('get_service_providers') }}">Постачальники послуг</a></li>
+               
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 ОСББ</p>
+    </footer>
+
+   <div style="text-align: center;">
+    <img src="{{ url_for('static', filename='pict.png') }}" alt="Description of the image" style="width: 65%; height: auto;">
+   </div>
+
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

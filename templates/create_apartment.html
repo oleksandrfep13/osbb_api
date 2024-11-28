@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Додати нову квартиру{% endblock %}
+
+{% block content %}
+    <h2>Додати нову квартиру</h2>
+    <form action="{{ url_for('create_apartment') }}" method="POST">
+        <label for="apartment_number">Номер квартири:</label>
+        <input type="text" id="apartment_number" name="apartment_number" required>
+        
+        <label for="idowners">ID Власника:</label>
+        <input type="number" id="idowners" name="idowners" required>
+        
+        <label for="floor">Поверх:</label>
+        <input type="number" id="floor" name="floor" required>
+        
+        <label for="area">Площа:</label>
+        <input type="number" id="area" name="area" required>
+
+        <label for="status">Статус:</label>
+        <input type="text" id="status" name="status" required placeholder="Введіть статус">
+
+        <button type="submit">Додати</button>
+    </form>
+{% endblock %}

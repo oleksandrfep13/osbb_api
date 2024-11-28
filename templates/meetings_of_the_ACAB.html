@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Збори ОСББ{% endblock %}
+
+{% block content %}
+    <h2>Список зборів</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Дата початку</th>
+                <th>Мета зборів</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for meeting in meetings %}
+                <tr>
+                    <td>{{ meeting.idmeetings_of_the_ACAB }}</td>
+                    <td>{{ meeting.date_start }}</td>
+                    <td>{{ meeting.purpose_of_the_meeting }}</td>
+                    <td>
+                        <a href="{{ url_for('update_meeting', meeting_id=meeting.idmeetings_of_the_ACAB) }}">Редагувати</a>
+                        <form action="{{ url_for('delete_meeting', meeting_id=meeting.idmeetings_of_the_ACAB) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-danger" style="margin-left: 10px;">Видалити</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('add_meeting') }}" class="btn btn-success">Додати нові збори</a>
+{% endblock %}

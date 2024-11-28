@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Редагувати оголошення{% endblock %}
+
+{% block content %}
+    <h2>Редагувати оголошення</h2>
+    <form method="POST" action="{{ url_for('update_advertisement', ad_id=advertisement.idAdvertisement) }}">
+        <label for="theme">Тема:</label>
+        <input type="text" name="theme" value="{{ advertisement.theme }}" required>
+        
+        <label for="ad_text">Текст оголошення:</label>
+        <textarea name="ad_text" required>{{ advertisement.ad_text }}</textarea>
+        
+        <label for="date_of_publication">Дата публікації:</label>
+        <input type="date" name="date_of_publication" value="{{ advertisement.date_of_publication }}" required>
+        
+        <label for="idowners">ID Власника:</label>
+        <input type="number" id="idowners" name="idowners" value="{{ advertisement.idowners }}" required> <!-- Змінив на input -->
+
+        <button type="submit">Оновити</button>
+    </form>
+{% endblock %}

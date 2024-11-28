@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Платежі{% endblock %}
+
+{% block content %}
+    <h2>Список платежів</h2>
+    <a href="{{ url_for('add_payment') }}" class="btn btn-success">Додати новий платіж</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ID Квартири</th>
+                <th>Тип платежу</th>
+                <th>Сума</th>
+                <th>Дата</th>
+                <th>Статус</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for payment in payments %}
+            <tr>
+                <td>{{ payment.idpayments }}</td>
+                <td>{{ payment.idapartments }}</td>
+                <td>{{ payment.payment_type }}</td>
+                <td>{{ payment.sum }}</td>
+                <td>{{ payment.date }}</td>
+                <td>{{ payment.status }}</td>
+                <td>
+                    <a href="{{ url_for('update_payment', payment_id=payment.idpayments) }}" class="btn btn-primary">Редагувати</a>
+                    <form action="{{ url_for('delete_payment', payment_id=payment.idpayments) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger" style="margin-left: 10px;">Видалити</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

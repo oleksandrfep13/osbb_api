@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Директори ОСББ{% endblock %}
+
+{% block content %}
+    <h2>Список директорів ОСББ</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID Директора</th>
+                <th>Дата вступу в посаду</th>
+                <th>ID Власника</th>
+                <th>Ім'я Власника</th>
+                <th>Прізвище Власника</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for director in directors %}
+                <tr>
+                    <td>{{ director['idacab_director'] }}</td>
+                    <td>{{ director['took_office'] }}</td>
+                    <td>{{ director['idowners'] }}</td>
+                    <td>
+                        {% for owner in owners %}
+                            {% if owner['idowners'] == director['idowners'] %}
+                                {{ owner['name'] }}
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for owner in owners %}
+                            {% if owner['idowners'] == director['idowners'] %}
+                                {{ owner['last_name'] }}
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a href="{{ url_for('update_director', director_id=director['idacab_director']) }}">Редагувати</a>
+                        <form action="{{ url_for('delete_director', director_id=director['idacab_director']) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Видалити</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ url_for('add_director') }}" class="btn btn-success">Додати нового директора</a>
+{% endblock %}

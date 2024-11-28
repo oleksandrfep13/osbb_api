@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Редагувати платіж{% endblock %}
+
+{% block content %}
+    <h2>Редагувати платіж</h2>
+    <form method="POST" action="{{ url_for('update_payment', payment_id=payment['idpayments']) }}">
+    <label for="payment_type">Тип платежу:</label>
+    <input type="text" name="payment_type" value="{{ payment['payment_type'] }}" required>
+    <label for="sum">Сума:</label>
+    <input type="number" name="sum" value="{{ payment['sum'] }}" required>
+    <label for="date">Дата:</label>
+    <input type="date" name="date" value="{{ payment['date'] }}" required>
+    <label for="status">Статус:</label>
+    <input type="text" name="status" value="{{ payment['status'] }}" required>
+    <label for="idapartments">ID Квартири:</label>
+    <input type="number" name="idapartments" value="{{ payment['idapartments'] }}" required>
+    <button type="submit">Оновити</button>
+</form>
+
+{% endblock %}

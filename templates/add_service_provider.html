@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Додати постачальника послуг{% endblock %}
+
+{% block content %}
+    <h2>Додати постачальника послуг</h2>
+    <form method="POST" action="{{ url_for('add_service_provider') }}">
+        <label for="service_providerscol">Назва постачальника:</label>
+        <input type="text" name="service_providerscol" required>
+
+        <label for="phone_number">Телефон:</label>
+        <input type="text" name="phone_number" required>
+
+        <label for="services">Послуги:</label>
+        <textarea name="services" required></textarea>
+
+        <button type="submit">Додати</button>
+    </form>
+{% endblock %}

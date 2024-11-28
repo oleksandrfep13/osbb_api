@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Додати спеціальну послугу{% endblock %}
+
+{% block content %}
+    <h2>Додати спеціальну послугу</h2>
+    <form method="POST" action="{{ url_for('add_special_service') }}">
+        <label for="services_type">Тип послуги:</label>
+        <input type="text" name="services_type" required>
+
+        <label for="date_start">Дата початку:</label>
+        <input type="date" name="date_start" required>
+
+        <label for="end_date">Дата закінчення:</label>
+        <input type="date" name="end_date" required>
+
+        <label for="price">Ціна:</label>
+        <input type="number" name="price" required>
+
+        <label for="idservice_providers">ID Постачальника:</label>
+        <input type="number" name="idservice_providers" required> <!-- Змінено на текстове поле -->
+
+        <button type="submit">Додати</button>
+    </form>
+{% endblock %}

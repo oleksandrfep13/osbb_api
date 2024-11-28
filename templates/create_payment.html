@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Додати платіж{% endblock %}
+
+{% block content %}
+    <h2>Додати новий платіж</h2>
+    <form method="POST" action="{{ url_for('add_payment') }}">
+        <label for="idapartments">ID Квартири:</label>
+        <input type="number" name="idapartments" id="idapartments" required>
+        
+        <label for="payment_type">Тип платежу:</label>
+        <input type="text" name="payment_type" id="payment_type" required>
+        
+        <label for="sum">Сума:</label>
+        <input type="number" name="sum" id="sum" required>
+        
+        <label for="date">Дата:</label>
+        <input type="date" name="date" id="date" required>
+        
+        <label for="status">Статус:</label>
+        <input type="text" name="status" id="status" required>
+        
+        <button type="submit" class="btn btn-success">Додати</button>
+    </form>
+{% endblock %}

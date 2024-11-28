@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Постачальники послуг{% endblock %}
+
+{% block content %}
+    <h2>Список постачальників послуг</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Назва постачальника</th>
+                <th>Телефон</th>
+                <th>Послуги</th>
+                <th>Дії</th> 
+            </tr>
+        </thead>
+        <tbody>
+            {% for provider in providers %}
+                <tr>
+                    <td>{{ provider.idservice_providers }}</td>
+                    <td>{{ provider.service_providerscol }}</td>
+                    <td>{{ provider.phone_number }}</td>
+                    <td>{{ provider.services }}</td>
+                    <td>
+                        <a href="{{ url_for('update_service_provider', provider_id=provider.idservice_providers) }}">Редагувати</a>
+                        <form action="{{ url_for('delete_service_provider', provider_id=provider.idservice_providers) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-danger" style="margin-left: 10px;">Видалити</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('add_service_provider') }}" class="btn btn-success">Додати нового постачальника</a>
+{% endblock %}

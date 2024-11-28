@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Квартири{% endblock %}
+
+{% block content %}
+    <h2>Список квартир</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Номер квартири</th>
+                <th>ID Власника</th>
+                <th>Поверх</th>
+                <th>Площа</th>
+                <th>Дії</th>
+		<th>Статус</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for apartment in apartments %}
+                <tr>
+                    <td>{{ apartment.idapartments }}</td>
+                    <td>{{ apartment.apartment_number }}</td>
+                    <td>{{ apartment.idowners}}</td>
+                    <td>{{ apartment.floor }}</td>
+                    <td>{{ apartment.area }}</td>
+	            <td>{{ apartment.status }}</td>
+                    <td>
+    <a href="{{ url_for('update_apartment', apartment_id=apartment['idapartments']) }}">Редагувати</a>
+    <form action="{{ url_for('delete_apartment', apartment_id=apartment['idapartments']) }}" method="POST" style="display:inline;">
+        <button type="submit" class="btn btn-danger" style="margin-left: 10px;">Видалити</button>
+    </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('create_apartment') }}">Додати нову квартиру</a>
+{% endblock %}

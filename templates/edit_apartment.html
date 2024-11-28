@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Редагувати квартиру{% endblock %}
+
+{% block content %}
+    <h2>Редагувати квартиру</h2>
+    <form action="{{ url_for('update_apartment', apartment_id=apartment['idapartments']) }}" method="POST">
+        <label for="apartment_number">Номер квартири:</label>
+        <input type="text" id="apartment_number" name="apartment_number" value="{{ apartment['apartment_number'] }}" required>
+        
+        <label for="idowners">ID Власника:</label>
+        <input type="number" id="idowners" name="idowners" value="{{ apartment['idowners'] }}" required>
+        
+        <label for="floor">Поверх:</label>
+        <input type="number" id="floor" name="floor" value="{{ apartment['floor'] }}" required>
+        
+        <label for="area">Площа:</label>
+        <input type="number" id="area" name="area" value="{{ apartment['area'] }}" required>
+
+        <label for="status">Статус:</label>
+        <input type="text" id="status" name="status" value="{{ apartment['status'] }}" required placeholder="Введіть статус">
+
+        <button type="submit">Оновити</button>
+    </form>
+{% endblock %}

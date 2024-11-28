@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Редагувати збори{% endblock %}
+
+{% block content %}
+    <h2>Редагувати збори</h2>
+    <form method="POST" action="{{ url_for('update_meeting', meeting_id=meeting['idmeetings_of_the_ACAB']) }}">
+        <label for="date_start">Дата початку:</label>
+        <input type="date" name="date_start" value="{{ meeting['date_start'] }}" required>
+        
+        <label for="purpose_of_the_meeting">Мета зборів:</label>
+        <input type="text" name="purpose_of_the_meeting" value="{{ meeting['purpose_of_the_meeting'] }}" required>
+        
+        <button type="submit">Оновити</button>
+    </form>
+{% endblock %}

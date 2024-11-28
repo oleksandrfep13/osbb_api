@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Оголошення{% endblock %}
+
+{% block content %}
+    <h2>Список оголошень</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Тема</th>
+                <th>Текст оголошення</th>
+                <th>Дата публікації</th>
+                <th>ID Власника</th>
+                <th>Дії</th> <!-- Додано для кнопок редагування та видалення -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for advertisement in advertisements %}
+                <tr>
+                    <td>{{ advertisement.idAdvertisement }}</td>
+                    <td>{{ advertisement.theme }}</td>
+                    <td>{{ advertisement.ad_text }}</td>
+                    <td>{{ advertisement.date_of_publication }}</td>
+                    <td>{{ advertisement.idowners }}</td>
+                    <td>
+                        <a href="{{ url_for('update_advertisement', ad_id=advertisement.idAdvertisement) }}">Редагувати</a>
+                        <form action="{{ url_for('delete_advertisement', ad_id=advertisement['idAdvertisement']) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-danger" style="margin-left: 10px;">Видалити</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('add_advertisement') }}" class="btn btn-success">Додати нове оголошення</a>
+{% endblock %}

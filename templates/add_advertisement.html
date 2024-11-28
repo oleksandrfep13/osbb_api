@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Додати оголошення{% endblock %}
+
+{% block content %}
+    <h2>Додати оголошення</h2>
+    <form method="POST" action="{{ url_for('add_advertisement') }}">
+        <label for="theme">Тема:</label>
+        <input type="text" name="theme" required>
+
+        <label for="ad_text">Текст оголошення:</label>
+        <textarea name="ad_text" required></textarea>
+
+        <label for="date_of_publication">Дата публікації:</label>
+        <input type="date" name="date_of_publication" required>
+
+        <label for="idowners">ID Власника:</label>
+        <input type="number" id="idowners" name="idowners" required> 
+
+        <button type="submit">Додати</button>
+    </form>
+{% endblock %}

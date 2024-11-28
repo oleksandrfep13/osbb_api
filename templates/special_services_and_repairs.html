@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Спеціальні послуги{% endblock %}
+
+{% block content %}
+    <h2>Список спеціальних послуг</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Тип послуги</th>
+                <th>Дата початку</th>
+                <th>Дата закінчення</th>
+                <th>Ціна</th>
+                <th>ID Постачальника</th>
+                <th>Дії</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for service in services %}
+                <tr>
+                    <td>{{ service.idspecial_services_and_repairs }}</td>
+                    <td>{{ service.services_type }}</td>
+                    <td>{{ service.date_start }}</td>
+                    <td>{{ service.end_date }}</td>
+                    <td>{{ service.price }}</td>
+                    <td>{{ service.idservice_providers }}</td>
+                    <td>
+                        <a href="{{ url_for('update_special_service', service_id=service.idspecial_services_and_repairs) }}">Редагувати</a>
+                        <form action="{{ url_for('delete_special_service', service_id=service.idspecial_services_and_repairs) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Видалити</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('add_special_service') }}" class="btn btn-success">Додати нову послугу</a>
+{% endblock %}

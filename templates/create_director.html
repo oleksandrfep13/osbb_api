@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Додати директора ОСББ{% endblock %}
+
+{% block content %}
+    <h2>Додати нового директора ОСББ</h2>
+    <form method="POST" action="{{ url_for('add_director') }}">
+        <label for="took_office">Дата вступу в посаду:</label>
+        <input type="date" name="took_office" required>
+        
+        <label for="idowners">Власник:</label>
+        <select name="idowners" required>
+            <option value="">Виберіть власника</option>
+            {% for owner in owners %}
+                <option value="{{ owner['idowners'] }}">{{ owner['name'] }} {{ owner['last_name'] }}</option>
+            {% endfor %}
+        </select>
+        
+        <button type="submit">Додати</button>
+    </form>
+{% endblock %}
